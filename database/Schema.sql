@@ -47,8 +47,6 @@ copy reviews_photos from '/Users/murkymode/Downloads/reviews_photos.csv' DELIMIT
 copy characteristics from '/Users/murkymode/Downloads/characteristics.csv' DELIMITER ',' CSV HEADER;
 copy characteristic_reviews from '/Users/murkymode/Downloads/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
 
--- build meta table here
-
 CREATE TABLE recommend_meta AS (
   SELECT product_id, recommend, count(recommend) FROM reviews GROUP BY product_id, recommend
 );
