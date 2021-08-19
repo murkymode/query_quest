@@ -4,7 +4,7 @@ sudo yum install git -y
 yum install npm
 yum install node
 yum install postgresql
-# node, pqsql, npm, homebrew
+# node, pqsql, npm
 # sudo yum install docker -y
 
 git clone https://github.com/j4-3/SDC-JSON-Reviews.git
