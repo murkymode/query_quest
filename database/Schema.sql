@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS sdc;
-CREATE DATABASE sdc;
+-- DROP DATABASE IF EXISTS sdc;
+-- CREATE DATABASE sdc;
 \c sdc;
 
-create table IF NOT EXISTS reviews (
+CREATE TABLE IF NOT EXISTS reviews (
   id INT PRIMARY KEY,
   product_id INT NOT NULL,
   rating INT NOT NULL,
@@ -17,7 +17,8 @@ create table IF NOT EXISTS reviews (
   helpfulness INT NOT NULL
 );
 
-create table IF NOT EXISTS reviews_photos (
+DROP TABLE IF EXISTS reviews_photos;
+CREATE TABLE IF NOT EXISTS reviews_photos (
   id INT PRIMARY KEY,
   review_id INT NOT NULL,
   url VARCHAR,
@@ -25,13 +26,13 @@ create table IF NOT EXISTS reviews_photos (
     REFERENCES reviews (id)
 );
 
-create table IF NOT EXISTS characteristics (
+CREATE TABLE IF NOT EXISTS characteristics (
   id INT PRIMARY KEY,
   product_id INT NOT NULL,
   name VARCHAR
 );
 
-create table IF NOT EXISTS characteristic_reviews (
+CREATE TABLE IF NOT EXISTS characteristic_reviews (
   id INT PRIMARY KEY,
   characteristic_id INT NOT NULL,
   review_id INT NOT NULL,
@@ -42,10 +43,10 @@ create table IF NOT EXISTS characteristic_reviews (
     REFERENCES reviews (id)
 );
 
-copy reviews from '/Users/murkymode/Downloads/reviews.csv' DELIMITER ',' CSV HEADER;
-copy reviews_photos from '/Users/murkymode/Downloads/reviews_photos.csv' DELIMITER ',' CSV HEADER;
-copy characteristics from '/Users/murkymode/Downloads/characteristics.csv' DELIMITER ',' CSV HEADER;
-copy characteristic_reviews from '/Users/murkymode/Downloads/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
+copy reviews from '/home/ec2-user/SDC-JSON-Reviews/data/reviews.csv' DELIMITER ',' CSV HEADER;
+copy reviews_photos from '/home/ec2-user/SDC-JSON-Reviews/data/reviews_photos.csv' DELIMITER ',' CSV HEADER;
+copy characteristics from '/home/ec2-user/SDC-JSON-Reviews/data/characteristics.csv' DELIMITER ',' CSV HEADER;
+copy characteristic_reviews from '/home/ec2-user/SDC-JSON-Reviews/data/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE recommend_meta AS (
   SELECT product_id, recommend, count(recommend) FROM reviews GROUP BY product_id, recommend
