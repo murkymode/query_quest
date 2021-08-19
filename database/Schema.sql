@@ -56,5 +56,8 @@ CREATE TABLE ratings_meta AS (
 );
 
 CREATE TABLE characteristic_meta AS (
-  SELECT characteristics.product_id, characteristics.name, characteristics.id, avg (characteristic_reviews.value) FROM characteristics, characteristic_reviews WHERE characteristic_reviews.characteristic_id = characteristics.id GROUP BY characteristics.product_id, characteristics.name, characteristics.id
+  SELECT characteristics.product_id, characteristics.name, characteristics.id, avg (characteristic_reviews.value)
+  FROM characteristics, characteristic_reviews
+  WHERE characteristic_reviews.characteristic_id = characteristics.id
+  GROUP BY characteristics.product_id, characteristics.name, characteristics.id
 );
