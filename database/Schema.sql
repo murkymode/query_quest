@@ -1,5 +1,5 @@
--- DROP DATABASE IF EXISTS sdc;
--- CREATE DATABASE sdc;
+DROP DATABASE IF EXISTS sdc;
+CREATE DATABASE sdc;
 \c sdc;
 
 CREATE TABLE IF NOT EXISTS reviews (
@@ -43,10 +43,10 @@ CREATE TABLE IF NOT EXISTS characteristic_reviews (
     REFERENCES reviews (id)
 );
 
-copy reviews from '/home/ec2-user/SDC-JSON-Reviews/data/reviews.csv' DELIMITER ',' CSV HEADER;
-copy reviews_photos from '/home/ec2-user/SDC-JSON-Reviews/data/reviews_photos.csv' DELIMITER ',' CSV HEADER;
-copy characteristics from '/home/ec2-user/SDC-JSON-Reviews/data/characteristics.csv' DELIMITER ',' CSV HEADER;
-copy characteristic_reviews from '/home/ec2-user/SDC-JSON-Reviews/data/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
+\copy reviews from '../data/reviews.csv' DELIMITER ',' CSV HEADER;
+\copy reviews_photos from '../data/reviews_photos.csv' DELIMITER ',' CSV HEADER;
+\copy characteristics from '../data/characteristics.csv' DELIMITER ',' CSV HEADER;
+\copy characteristic_reviews from '../data/characteristic_reviews.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE recommend_meta AS (
   SELECT product_id, recommend, count(recommend) FROM reviews GROUP BY product_id, recommend
