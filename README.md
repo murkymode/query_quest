@@ -1,2 +1,2 @@
-# JSON-Reviews
+# Query Quest
 System Design Capstone
